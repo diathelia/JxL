@@ -28,8 +28,38 @@ function clearZone() {
   document.querySelector("#letters").style.display = "none";
 }
 
-// canvas play/pause listener
-document.querySelector("#webAudioCtx").addEventListener("click", () => {
+// runs video transition between content-switches
+function transition(toPause) {
+  // pause dynamic content (if needed)
+  if (toPause) {
+    console.log(toPause);
+    triggerPauses(toPause);
+  }
+
+  // apply transition
+  document.querySelector("#ts").style.display = "block";
+  document.querySelector("#ts").play();
+  setTimeout(function() {
+    // resume dynamic content (if needed)
+    if (toPause) {
+      triggerPauses(toPause);
+    }
+    document.querySelector("#ts").style.display = "none";
+  }, 1300);
+}
+
+// called if content-switch requires toggling
+function triggerPauses(toPause) {
+  if (toPause === "audio") {
+    audioToggle();
+  }
+  if (toPause === "video") {
+    videoToggle();
+  }
+}
+
+// toggles audio play/pause
+function audioToggle() {
   if (audio.paused === true) {
     audio.play();
   } else if (audio.paused === false) {
@@ -37,10 +67,10 @@ document.querySelector("#webAudioCtx").addEventListener("click", () => {
   } else {
     console.log("shits broke");
   }
-});
+}
 
-// video play/pause listener
-p1080.addEventListener("click", () => {
+// toggles video play/pause
+function videoToggle() {
   if (p1080.paused === true) {
     p1080.play();
   } else if (p1080.paused === false) {
@@ -48,17 +78,29 @@ p1080.addEventListener("click", () => {
   } else {
     console.log("shits broke");
   }
+}
+
+// canvas play/pause listener
+document.querySelector("#webAudioCtx").addEventListener("click", () => {
+  audioToggle();
 });
 
-// home button listener
+// video play/pause listener
+p1080.addEventListener("click", () => {
+  videoToggle();
+});
+
+// home button listeners
 document.querySelector("#lilHome").addEventListener("click", () => {
   clearZone();
   activeImage.style.display = "block";
+  // transition();
 });
 document.querySelector("#bigHome").addEventListener("click", e => {
   e.preventDefault();
   clearZone();
   activeImage.style.display = "block";
+  // transition();
 });
 
 // music button listener
@@ -67,6 +109,7 @@ document.querySelector("#music").addEventListener("click", e => {
   clearZone();
   document.querySelector("#webAudioCtx").style.display = "block";
   audio.play();
+  transition("audio");
   draw();
 });
 
@@ -74,16 +117,18 @@ document.querySelector("#music").addEventListener("click", e => {
 document.querySelector("#video").addEventListener("click", e => {
   e.preventDefault();
   clearZone();
-  p1080.play();
   p1080.style.display = "block";
+  p1080.play();
+  transition("video");
 });
 
 // press button listener
 document.querySelector("#press").addEventListener("click", e => {
   e.preventDefault();
   clearZone();
-  activeImage.style.display = "block";
   activeImage.src = "img/jaggers-x-lines-for-jonoblack.png"; // filler
+  activeImage.style.display = "block";
+  // transition();
 });
 
 // shop button listener
@@ -94,6 +139,7 @@ document.querySelector("#shop").addEventListener("click", e => {
   document.querySelector("#letters").innerHTML =
     '<iframe style="width: auto; height: 100vh; border: 0;" src="https://bandcamp.com/EmbeddedPlayer/album=476175735/size=large/bgcol=333333/linkcol=ffffff/transparent=true' +
     '/"seamless><a href="http://jaggersxlines.bandcamp.com/album/letters">Letters by Jaggers x Lines</a></iframe>';
+  // transition();
 });
 
 // bit-secured color randomising utility
@@ -184,12 +230,12 @@ window.addEventListener("beforeunload", function() {
       .catch(function() {
         console.log("context not closed");
       });
-    // event.returnValue = ''; // setting this to any string will create the 'are you sure you want to leave' prompt
+    // setting this to any string will create the 'are you sure you want to leave' prompt
+    // event.returnValue = '';
   }
 });
 
-/* bandcamp iframe - unneccessary for Web Audio API on github pages:
-
+/*
     "GitHub Pages source repositories have a recommended limit
      of 1GB . Published GitHub Pages sites may be no larger than
      1 GB. GitHub Pages sites have a soft bandwidth limit of 100GB

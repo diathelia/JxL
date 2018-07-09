@@ -1,8 +1,10 @@
+/* elements to hide on init */
 #webAudioCtx {
   height: 100vh;
   width: 100%;
   display: none;
-  opacity: 0.4;
+  /* opacity: 0.4; */
+  background: white;
 }
 
 #webAudio {
@@ -16,6 +18,15 @@
   overflow: hidden;
 }
 
+#ts {
+  display: none;
+  width: auto;
+  height: 110vh;
+  z-index: 3;
+  margin-bottom: 50vh;
+}
+
+/* general */
 ::selection {
   background: #f8c0d9; /* WebKit/Blink Browsers */
 }
@@ -45,6 +56,11 @@ body {
   max-height: 100vh;
 }
 
+/* content management */
+#active-zone {
+  background: black;
+}
+
 #active-zone img,
 #p1080 {
   margin: 0 auto 0 auto;
@@ -54,7 +70,7 @@ body {
   height: 100vh;
 }
 
-/* responsive nav structure */
+/* dual nav structure for responsiveness */
 #big-nav {
   max-height: 100%;
   margin-top: 1vh;
