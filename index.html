@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya">
+    <link rel="stylesheet" href="style.css">
+    <title>Jaggers x Lines</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- smol nav (only appears for screens <= 576px) -->
+        <div class="row" id="smol-nav">
+            <img class="title" id="lilHome" src="img/transparent.png" alt="Jaggers X Lines">
+            <nav>
+                <a class="music" href="#">Music</a>
+                <a class="video" href="#">Video</a>
+                <a class="press" href="#">Press</a>
+                <a class="shop" href="#">Shop</a>
+                <a class="gigs" href="#">Gigs</a>
+            </nav>
+        </div>
+
+        <div class="row">
+            <!-- regular nav (appears for screens >= 576px) -->
+            <div id="big-nav" class="col-xs-2 col-sm-3 col-md-3 col-lg-3">
+                <a href="#" id="bigHome">
+                    <img class="title" src="img/transparent.png" alt="Jaggers X Lines">
+                </a>
+                <p id="bio">
+                    <em>🔮🔮🔮🔮🔮🔮🔮🔮🔮🔮🔮🔮🔮
+                        <br> Jaggers x Lines make sideways, scratched
+                        <br>-up electro-pop from the shadowy recess-
+                        <br>es of Dunedin, New Zealand
+                        <br>🔮🔮🔮🔮🔮🔮🔮🔮🔮🔮 🔮🔮🔮
+                        <br>
+                    </em>
+                </p>
+                <ul class="list-unstyled">
+                    <li>
+                        <a class="btn-transparent sections" id="music" href="#">Music</a>
+                    </li>
+                    <li>
+                        <a class="btn-transparent sections" id="video" href="#">Video</a>
+                    </li>
+                    <li>
+                        <a class="btn-transparent sections" id="press" href="#">Press</a>
+                    </li>
+                    <li>
+                        <a class="btn-transparent sections" id="shop" href="#">Shop </a>
+                    </li>
+                    <li>
+                        <a class="btn-transparent sections" id="gigs" href="#">Gigs </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- non-nav rest of page -->
+            <div id="content" class="col-xs-10 col-sm-9 col-md-9 col-lg-9 text-center">
+                <!-- md-7, lg-7 with #extra -->
+                <div id="active-zone">
+                    <img id="activeImg" src="img/duo.jpg" alt="Eliana Gray and Morgan Smillie">
+                    <canvas class "text-center" id="webAudioCtx"></canvas>
+                    <audio controls id="webAudio" src="audio/Tried.mp3"></audio>
+                    <video id="p1080" src="video/1080p.mp4" alt="Come to Rest video"></video>
+                    <div id="letters">
+                    </div>
+                </div>
+            </div>
+            <!--<div id="extra" class="col-xs-0 col-sm-0 col-md-2 col-lg-2">
+            </div>-->
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
