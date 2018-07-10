@@ -28,7 +28,7 @@ function clearZone() {
   document.querySelector("#letters").style.display = "none";
 }
 
-// runs video transition between content-switches
+// runs transition between content-switches
 function transition(toPause) {
   // pause dynamic content (if needed)
   if (toPause) {
@@ -90,56 +90,65 @@ p1080.addEventListener("click", () => {
   videoToggle();
 });
 
+// alias nav button classes
+const home = document.querySelectorAll(".home");
+const music = document.querySelectorAll(".music");
+const video = document.querySelectorAll(".video");
+const press = document.querySelectorAll(".press");
+const shop = document.querySelectorAll(".shop");
+const gigs = document.querySelectorAll(".gigs");
+
 // home button listeners
-document.querySelector("#lilHome").addEventListener("click", () => {
-  clearZone();
-  activeImage.style.display = "block";
-  // transition();
-});
-document.querySelector("#bigHome").addEventListener("click", e => {
-  e.preventDefault();
-  clearZone();
-  activeImage.style.display = "block";
-  // transition();
+Array.from(home).forEach(button => {
+  button.addEventListener("click", e => {
+    e.preventDefault();
+    clearZone();
+    activeImage.style.display = "block";
+  });
 });
 
-// music button listener
-document.querySelector("#music").addEventListener("click", e => {
-  e.preventDefault();
-  clearZone();
-  document.querySelector("#webAudioCtx").style.display = "block";
-  audio.play();
-  transition("audio");
-  draw();
+Array.from(music).forEach(button => {
+  button.addEventListener("click", e => {
+    e.preventDefault();
+    clearZone();
+    document.querySelector("#webAudioCtx").style.display = "block";
+    audio.play();
+    transition("audio");
+    draw();
+  });
 });
 
 // video button listener
-document.querySelector("#video").addEventListener("click", e => {
-  e.preventDefault();
-  clearZone();
-  p1080.style.display = "block";
-  p1080.play();
-  transition("video");
+Array.from(video).forEach(button => {
+  button.addEventListener("click", e => {
+    e.preventDefault();
+    clearZone();
+    p1080.style.display = "block";
+    p1080.play();
+    transition("video");
+  });
 });
 
 // press button listener
-document.querySelector("#press").addEventListener("click", e => {
-  e.preventDefault();
-  clearZone();
-  activeImage.src = "img/jaggers-x-lines-for-jonoblack.png"; // filler
-  activeImage.style.display = "block";
-  // transition();
+Array.from(press).forEach(button => {
+  button.addEventListener("click", e => {
+    e.preventDefault();
+    clearZone();
+    activeImage.src = "img/jaggers-x-lines-for-jonoblack.png"; // filler
+    activeImage.style.display = "block";
+  });
 });
 
 // shop button listener
-document.querySelector("#shop").addEventListener("click", e => {
-  e.preventDefault();
-  clearZone();
-  document.querySelector("#letters").style.display = "block";
-  document.querySelector("#letters").innerHTML =
-    '<iframe style="width: auto; height: 100vh; border: 0;" src="https://bandcamp.com/EmbeddedPlayer/album=476175735/size=large/bgcol=333333/linkcol=ffffff/transparent=true' +
-    '/"seamless><a href="http://jaggersxlines.bandcamp.com/album/letters">Letters by Jaggers x Lines</a></iframe>';
-  // transition();
+Array.from(shop).forEach(button => {
+  button.addEventListener("click", e => {
+    e.preventDefault();
+    clearZone();
+    document.querySelector("#letters").style.display = "block";
+    document.querySelector("#letters").innerHTML =
+      '<iframe style="width: auto; height: 100vh; border: 0;" src="https://bandcamp.com/EmbeddedPlayer/album=476175735/size=large/bgcol=333333/linkcol=ffffff/transparent=true' +
+      '/"seamless><a href="http://jaggersxlines.bandcamp.com/album/letters">Letters by Jaggers x Lines</a></iframe>';
+  });
 });
 
 // bit-secured color randomising utility
