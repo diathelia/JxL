@@ -38,8 +38,10 @@ function transition(toPause) {
 
   // apply transition
   document.querySelector("#ts").style.display = "block";
+  document.querySelector("body").style.pointerEvents = "none";
   document.querySelector("#ts").play();
-  setTimeout(function() {
+  setTimeout(() => {
+    document.querySelector("body").style.pointerEvents = "auto";
     // resume dynamic content (if needed)
     if (toPause) {
       triggerPauses(toPause);
@@ -103,6 +105,7 @@ Array.from(home).forEach(button => {
   button.addEventListener("click", e => {
     e.preventDefault();
     clearZone();
+    activeImage.src = "img/bg-still.png";
     activeImage.style.display = "block";
   });
 });
@@ -148,6 +151,16 @@ Array.from(shop).forEach(button => {
     document.querySelector("#letters").innerHTML =
       '<iframe style="width: auto; height: 100vh; border: 0;" src="https://bandcamp.com/EmbeddedPlayer/album=476175735/size=large/bgcol=333333/linkcol=ffffff/transparent=true' +
       '/"seamless><a href="http://jaggersxlines.bandcamp.com/album/letters">Letters by Jaggers x Lines</a></iframe>';
+  });
+});
+
+// gigs button listener
+Array.from(gigs).forEach(button => {
+  button.addEventListener("click", e => {
+    e.preventDefault();
+    clearZone();
+    activeImage.src = "img/duo.jpg"; // filler
+    activeImage.style.display = "block";
   });
 });
 
@@ -243,12 +256,3 @@ window.addEventListener("beforeunload", function() {
     // event.returnValue = '';
   }
 });
-
-/*
-    "GitHub Pages source repositories have a recommended limit
-     of 1GB . Published GitHub Pages sites may be no larger than
-     1 GB. GitHub Pages sites have a soft bandwidth limit of 100GB
-     per month. GitHub Pages sites have a soft limit of 10 builds
-     per hour."
-
-   So use something local & reasonable (try ffmpeg to MP3-V0 / x kbps ?) */
