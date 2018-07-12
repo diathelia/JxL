@@ -45,7 +45,12 @@ function transition(toPause) {
   // apply transition
   document.querySelector(id).style.display = "block";
   document.querySelector("body").style.pointerEvents = "none";
-  document.querySelector(id).play();
+  document
+    .querySelector(id)
+    .play()
+    .catch(e => {
+      console.log(e);
+    });
   setTimeout(() => {
     document.querySelector("body").style.pointerEvents = "auto";
     // resume dynamic content (if needed)
@@ -69,7 +74,9 @@ function triggerPauses(toPause) {
 // toggles audio play/pause
 function audioToggle() {
   if (audio.paused === true) {
-    audio.play();
+    audio.play().catch(e => {
+      console.log(e);
+    });
   } else if (audio.paused === false) {
     audio.pause();
   } else {
@@ -80,7 +87,9 @@ function audioToggle() {
 // toggles video play/pause
 function videoToggle() {
   if (p1080.paused === true) {
-    p1080.play();
+    p1080.play().catch(e => {
+      console.log(e);
+    });
   } else if (p1080.paused === false) {
     p1080.pause();
   } else {
@@ -116,7 +125,9 @@ Array.from(music).forEach(button => {
     e.preventDefault();
     clearZone();
     document.querySelector("#webAudioCtx").style.display = "block";
-    audio.play();
+    audio.play().catch(e => {
+      console.log(e);
+    });
     transition("audio");
     draw();
   });
@@ -128,7 +139,9 @@ Array.from(video).forEach(button => {
     e.preventDefault();
     clearZone();
     p1080.style.display = "block";
-    p1080.play();
+    p1080.play().catch(e => {
+      console.log(e);
+    });
     transition("video");
   });
 });
