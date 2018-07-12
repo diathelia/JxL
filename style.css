@@ -50,6 +50,10 @@ body {
   padding: 0;
 }
 
+#main-nav {
+  padding-right: 0.2rem;
+}
+
 /* #mini-nav */
 #mini-nav a {
   color: #f8c0d9 !important;
@@ -80,6 +84,7 @@ body {
 #webAudio,
 #p1080,
 #ts,
+#tsr,
 #letters {
   display: none;
   width: auto;
@@ -88,7 +93,8 @@ body {
 }
 
 /* ensure transition doesn't show the content its bumping down */
-#ts {
+#ts,
+#tsr {
   margin-bottom: 100vh;
 }
 
@@ -98,8 +104,7 @@ body {
   cursor: pointer;
 }
 
-/* clean up bootstrap navs */
-.home,
+/* clean up bootstrap nav */
 .navbar,
 .navbar-default,
 .navbar-brand {
@@ -111,6 +116,7 @@ body {
 .home {
   border: 1px solid transparent;
   width: 100%;
+  margin: 0.1rem 0 0 0.1rem;
 }
 
 .home:hover {

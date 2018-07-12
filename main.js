@@ -30,23 +30,29 @@ function clearZone() {
 
 // runs transition between content-switches
 function transition(toPause) {
+  // either transition id (default) or transition-reverse id
+  let id = "#ts";
   // pause dynamic content (if needed)
   if (toPause) {
     console.log(toPause);
     triggerPauses(toPause);
+    if (toPause === "video") {
+      // set reverse transition clip id
+      id = "#tsr";
+    }
   }
 
   // apply transition
-  document.querySelector("#ts").style.display = "block";
+  document.querySelector(id).style.display = "block";
   document.querySelector("body").style.pointerEvents = "none";
-  document.querySelector("#ts").play();
+  document.querySelector(id).play();
   setTimeout(() => {
     document.querySelector("body").style.pointerEvents = "auto";
     // resume dynamic content (if needed)
     if (toPause) {
       triggerPauses(toPause);
     }
-    document.querySelector("#ts").style.display = "none";
+    document.querySelector(id).style.display = "none";
   }, 1300);
 }
 
@@ -83,14 +89,10 @@ function videoToggle() {
 }
 
 // canvas play/pause listener
-document.querySelector("#webAudioCtx").addEventListener("click", () => {
-  audioToggle();
-});
+document.querySelector("#webAudioCtx").addEventListener("click", audioToggle);
 
 // video play/pause listener
-p1080.addEventListener("click", () => {
-  videoToggle();
-});
+p1080.addEventListener("click", videoToggle);
 
 // alias nav button classes
 const home = document.querySelectorAll(".home");
