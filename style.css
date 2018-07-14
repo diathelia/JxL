@@ -30,7 +30,7 @@
 }
 
 /* icon specific media queries */
-@media only screen and (max-width: 530px) {
+@media only screen and (max-width: 555px) {
   .icon {
     height: 1.6rem !important;
   }
@@ -38,40 +38,40 @@
     left: -1rem !important;
   }
   #soundcloud {
-    left: 9.5rem !important;
+    left: 10.5rem !important;
   }
   #youtube {
-    left: 12.7rem !important;
+    left: 14em !important;
   }
   #instagram {
-    left: 15rem !important;
+    left: 16.5rem !important;
   }
   #facebook {
-    left: 17.3rem !important;
+    left: 19rem !important;
   }
   #twitter {
-    left: 18.7rem !important;
+    left: 20.5rem !important;
   }
 }
 
-@media only screen and (max-width: 347px) {
+@media only screen and (max-width: 376px) {
   .icon {
     height: 1.3rem !important;
   }
   #soundcloud {
-    left: 8rem !important;
+    left: 8.3rem !important;
   }
   #youtube {
-    left: 11rem !important;
+    left: 11.1rem !important;
   }
   #instagram {
-    left: 13.3rem !important;
+    left: 13.1rem !important;
   }
   #facebook {
-    left: 15.7rem !important;
+    left: 15.3rem !important;
   }
   #twitter {
-    left: 17.3rem !important;
+    left: 16.65rem !important;
   }
 }
 
@@ -145,29 +145,29 @@ body {
 }
 
 #soundcloud {
-  left: 14.9rem;
+  left: 16rem;
   top: -2%;
 }
 
 #youtube {
-  left: 19.8rem;
+  left: 21rem;
   top: -2%;
 }
 
 #instagram {
   height: 140%;
-  left: 23.4rem;
+  left: 24.6rem;
   top: -23.75%;
 }
 
 #facebook {
-  left: 26.85rem;
+  left: 28.2rem;
   height: 95%;
 }
 
 #twitter {
   height: 170%;
-  left: 29rem;
+  left: 30.5rem;
   top: -40%;
   z-index: 2;
 }
