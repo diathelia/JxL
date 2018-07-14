@@ -16,6 +16,7 @@ function clearZone() {
   // hide all content
   // document.querySelector("#letters").innerHTML = "";
   // document.querySelector("#letters").style.display = "none";
+  document.querySelector("#mini-bio").style.display = "none";
   document.querySelector("#bg-crop").style.display = "none";
   document.querySelector("#duo").style.display = "none";
   document.querySelector("#erins").style.display = "none";
@@ -118,6 +119,7 @@ Array.from(home).forEach(button => {
     e.preventDefault();
     clearZone();
     document.querySelector("#bg-crop").style.display = "block";
+    document.querySelector("#mini-bio").style.display = "block";
   });
 });
 
