@@ -1,3 +1,20 @@
+/* Note: because of ID based selectors, overriding properties require !importants */
+
+/* Width */
+@media only screen and (max-width: 575px) {
+  #content,
+  #main-nav {
+    height: 70vh !important;
+  }
+  #bg-crop {
+    width: 100% !important;
+    height: auto !important;
+  }
+  #bio {
+    font-size: smaller !important;
+  }
+}
+
 /* Height */
 @media only screen and (max-height: 545px) {
   .btn-transparent {
@@ -12,18 +29,49 @@
   }
 }
 
-/* Width */
-@media only screen and (max-width: 575px) {
-  #content,
-  #main-nav {
-    height: 70vh !important;
+/* icon specific media queries */
+@media only screen and (max-width: 530px) {
+  .icon {
+    height: 1.6rem !important;
   }
-  #bg-crop {
-    width: 100% !important;
-    height: auto !important;
+  #bandcamp {
+    left: -1rem !important;
   }
-  #bio {
-    font-size: smaller !important;
+  #soundcloud {
+    left: 9.5rem !important;
+  }
+  #youtube {
+    left: 12.7rem !important;
+  }
+  #instagram {
+    left: 15rem !important;
+  }
+  #facebook {
+    left: 17.3rem !important;
+  }
+  #twitter {
+    left: 18.7rem !important;
+  }
+}
+
+@media only screen and (max-width: 347px) {
+  .icon {
+    height: 1.3rem !important;
+  }
+  #soundcloud {
+    left: 8rem !important;
+  }
+  #youtube {
+    left: 11rem !important;
+  }
+  #instagram {
+    left: 13.3rem !important;
+  }
+  #facebook {
+    left: 15.7rem !important;
+  }
+  #twitter {
+    left: 17.3rem !important;
   }
 }
 
@@ -59,11 +107,76 @@ body {
   color: #f8c0d9 !important;
 }
 
+/* networking icons */
+.icon {
+  height: 2.5rem;
+  width: 50vw;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+
+.icon a {
+  text-decoration: none;
+}
+
+.icon img {
+  height: 100%;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  opacity: 0.7;
+}
+
+.icon img:hover {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+}
+
+#bandcamp {
+  height: 200%;
+  left: -1.5rem;
+  top: -45%;
+}
+
+#soundcloud {
+  left: 14.9rem;
+  top: -2%;
+}
+
+#youtube {
+  left: 19.8rem;
+  top: -2%;
+}
+
+#instagram {
+  height: 140%;
+  left: 23.4rem;
+  top: -23.75%;
+}
+
+#facebook {
+  left: 26.85rem;
+  height: 95%;
+}
+
+#twitter {
+  height: 170%;
+  left: 29rem;
+  top: -40%;
+  z-index: 2;
+}
+
 /* canvas can stretch */
 #webAudioCtx {
   display: none;
   width: 100%;
-  height: 100%;
+  height: 94%;
 }
 
 /* images */

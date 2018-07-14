@@ -1,26 +1,27 @@
 // audio visualiser variables
-var analyser,
-  canvas = document.getElementById("webAudioCtx"),
+const canvas = document.getElementById("webAudioCtx"),
   ctx = canvas.getContext("2d"),
+  audio = document.getElementById("webAudio"),
+  p1080 = document.querySelector("#p1080");
+
+var analyser,
   drawID,
   random = Math.random,
   circles = [],
-  audio = document.getElementById("webAudio"),
   audioContext = new AudioContext(),
-  source = audioContext.createMediaElementSource(audio),
-  p1080 = document.querySelector("#p1080");
+  source = audioContext.createMediaElementSource(audio);
 
 // utilty to irrespectively clear the active-zone
 function clearZone() {
   // hide all content
-  document.querySelector("#letters").innerHTML = "";
-  document.querySelector("#letters").style.display = "none";
+  // document.querySelector("#letters").innerHTML = "";
+  // document.querySelector("#letters").style.display = "none";
   document.querySelector("#bg-crop").style.display = "none";
   document.querySelector("#duo").style.display = "none";
   document.querySelector("#erins").style.display = "none";
   document.querySelector("#webAudioCtx").style.display = "none";
   p1080.style.display = "none";
-  // cancel resources
+  // cancel + reset resources
   window.cancelAnimationFrame(drawID);
   audio.pause();
   audio.currentTime = 0;
@@ -111,7 +112,7 @@ const press = document.querySelectorAll(".press");
 const shop = document.querySelectorAll(".shop");
 const gigs = document.querySelectorAll(".gigs");
 
-// home button listeners
+// home button listener
 Array.from(home).forEach(button => {
   button.addEventListener("click", e => {
     e.preventDefault();
@@ -120,6 +121,7 @@ Array.from(home).forEach(button => {
   });
 });
 
+// music button listener
 Array.from(music).forEach(button => {
   button.addEventListener("click", e => {
     e.preventDefault();
@@ -199,7 +201,7 @@ function Circle() {
 
 // iterate circle prototype
 Circle.prototype.draw = function() {
-  var that = this;
+  let that = this;
   ctx.save();
   ctx.beginPath();
   ctx.globalAlpha = random() * random();
@@ -225,7 +227,7 @@ function vizualise() {
 // self-executing callback
 function draw() {
   drawID = window.requestAnimationFrame(draw);
-  var freqByteData = new Uint8Array(analyser.frequencyBinCount);
+  let freqByteData = new Uint8Array(analyser.frequencyBinCount);
   analyser.getByteFrequencyData(freqByteData);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
