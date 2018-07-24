@@ -1,8 +1,9 @@
 // audio visualiser variables
 const canvas = document.getElementById("webAudioCtx"),
   ctx = canvas.getContext("2d"),
-  audio = document.getElementById("webAudio"),
-  p1080 = document.querySelector("#p1080");
+  gradient = ctx.createLinearGradient(0, 0, 0, 300);
+(audio = document.getElementById("webAudio")),
+  (p1080 = document.querySelector("#p1080"));
 
 var analyser,
   drawID,
@@ -191,14 +192,7 @@ function Circle() {
   this.x = random() * canvas.width;
   this.y = random() * canvas.height;
   this.radius = random() * random();
-  this.color =
-    "rgb(" +
-    getRandomColor() +
-    "," +
-    getRandomColor() +
-    "," +
-    getRandomColor() +
-    ")";
+  this.color = gradient % 2;
 }
 
 // iterate circle prototype
@@ -220,41 +214,63 @@ function vizualise() {
   analyser.connect(audioContext.destination);
 
   // create 1000 iterative circle prototypes
-  for (var i = 0; i < 1000; i++) {
+  for (var i = 0; i < 100; i++) {
     circles[i] = new Circle();
     circles[i].draw();
   }
+
+  // config some static canvas props
+  if (ctx) {
+    // set colors here instead of inside draw() callback to avoid flickering
+    ctx.fillStyle = "rgb(" + 10 + "," + 211 + "," + (256 >> 0) + ")";
+    gradient.addColorStop(0, "white");
+    gradient.addColorStop(1, "red");
+    ctx.strokeStyle = gradient % 2;
+  } else {
+    alert(
+      "canvas context unsupported, please try updating or switching browsers to see visualisations"
+    );
+  }
 }
+
+/** canvas visualisation function *************************************************************************************/
 
 // self-executing callback
 function draw() {
   drawID = window.requestAnimationFrame(draw);
   let freqByteData = new Uint8Array(analyser.frequencyBinCount);
+
   analyser.getByteFrequencyData(freqByteData);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (var i = 1; i < circles.length; i++) {
-    circles[i].radius = freqByteData[i] / 2;
-    circles[i].y = circles[i].y > canvas.height ? 0 : circles[i].y * 2;
+    circles[i].radius = freqByteData[i] / 80;
+    // circles[i].y = circles[i].y > canvas.height ? 0 : circles[i].y * 2;
     circles[i].draw();
   }
 
-  for (var i = 1; i < freqByteData.length; i += 15) {
-    ctx.fillStyle =
-      "rgb(" +
-      getRandomColor() +
-      "," +
-      getRandomColor() +
-      "," +
-      getRandomColor() +
-      ")";
-    ctx.fillRect(i, canvas.height - freqByteData[i] * 0.2, 10, canvas.height);
-    ctx.strokeRect(
+  // create bouncing colored bars (idea: use diff vars for start of track to heavier thicker rest of songs)
+  for (var i = 1; i < freqByteData.length; i++) {
+    ctx.fillStyle = "rgb(" + i + "," + 211 + "," + (256 >> 0) + ")";
+    // ctx.strokeRect(
+    //   i,
+    //   canvas.height - freqByteData[i * 15] / 0.00001,
+    //   1,
+    //   canvas.height
+    // );
+    ctx.fillRect(
       i,
-      canvas.height - freqByteData[i] * 0.0001,
-      10,
+      canvas.height - freqByteData[i * 5.25] / 0.018,
+      1,
       canvas.height
     );
+  }
+
+  // more boring bottom bars
+  for (var i = 1; i < freqByteData.length; i += 15) {
+    ctx.fillStyle = gradient;
+    ctx.fillRect(i, canvas.height - freqByteData[i], 1, canvas.height);
+    ctx.strokeRect(i, canvas.height - freqByteData[i], 10, canvas.height);
   }
 }
 
